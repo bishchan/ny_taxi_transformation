@@ -1,0 +1,13 @@
+version: 2
+
+sources:
+  - name: nyc_taxi_data
+    database: project-22d3f624-2ead-491d-b43
+    schema: nyc_taxi_data
+    tables:
+
+      - name: yellow_taxi
+        description: 'yellow taxi trips'
+
+      - name: zones
+        description: 'taxi zones'
