@@ -1,13 +1,13 @@
 SELECT 
-    'Yellow Taxi' as taxi_type,
+    'Green Taxi' as taxi_type,
     VendorID as vendor_id,
     {{ get_vendor_name('VendorID') }} as vendor_name,
     RateCodeID as rate_code_id,
     {{ get_rate_code_name('RateCodeID') }} as rate_code_description,
     PULocationID as pickup_location_id,
     DOLocationID as dropoff_location_id,
-    tpep_pickup_datetime as pickup_datetime,
-    tpep_dropoff_datetime as dropoff_datetime,
+    lpep_pickup_datetime as pickup_datetime,
+    lpep_dropoff_datetime as dropoff_datetime,
     trip_distance,
     store_and_fwd_flag,
     passenger_count,
@@ -21,7 +21,7 @@ SELECT
     tolls_amount,
     improvement_surcharge,
     congestion_surcharge,
-    airport_fee,
+    NULL as airport_fee,
     total_amount
 
-FROM {{source('nyc_taxi_data', 'yellow_taxi')}}
+FROM {{source('nyc_taxi_data', 'green_taxi')}}

@@ -11,3 +11,6 @@ sources:
 
       - name: zones
         description: 'taxi zones'
+
+      - name: green_taxi
+        description: 'green taxi trips'  

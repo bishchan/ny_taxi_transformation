@@ -1,6 +1,6 @@
 name: nyc_taxi_data
 
-profile: nyc_taxi_transformation
+profile: default
 
 seed-paths: ["seeds"]
 model-paths: ["models"]
