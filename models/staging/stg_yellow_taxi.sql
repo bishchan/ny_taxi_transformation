@@ -11,7 +11,6 @@ SELECT
     trip_distance,
     store_and_fwd_flag,
     passenger_count,
-    trip_distance,
     payment_type,
     {{ get_payment_type('payment_type') }} as payment_type_description,
     fare_amount,
