@@ -9,6 +9,11 @@ clean-targets:
   - "target"
   - "dbt_packages"
 
+
+data_tests:
+  +severity: warn  # Sets the default to warn for EVERY test in the project
+
+
 models:
   nyc_taxi_data:
     +static_analysis: strict

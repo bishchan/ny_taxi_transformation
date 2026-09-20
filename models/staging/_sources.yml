@@ -1,0 +1,91 @@
+version: 2
+
+sources:
+  - name: nyc_taxi_data
+    database: project-22d3f624-2ead-491d-b43
+    schema: nyc_taxi_data
+
+    tables:
+
+      - name: zones
+        description: 'taxi zones'
+        columns:
+          - name: LocationID 
+            description: 'A unique identifier for the taxi zone.'
+            data_tests:
+              - unique
+              - not_null
+          - name: borough
+            description: 'The borough in which the taxi zone is located.'
+            data_tests:
+              - not_null
+          - name: zone
+            description: 'The name of the taxi zone.'
+            data_tests:
+              - not_null     
+              - unique   
+          - name: service_zone
+            description: 'The service zone in which the taxi zone is located.'
+            data_tests:
+              - not_null 
+
+
+      - name: yellow_taxi
+        description: 'yellow taxi trips'
+        columns:
+          - name: tpep_pickup_datetime
+            description: 'The date and time when the meter was engaged.'
+            data_tests:
+              - not_null
+          - name: tpep_dropoff_datetime
+            description: 'The date and time when the meter was disengaged.'
+            data_tests:
+              - not_null
+
+          - name: trip_distance
+            description: 'The elapsed trip distance in miles reported by the taximeter.'
+            data_tests:
+              - not_null
+
+          - name: PULocationID 
+            data_tests:
+              - relationships:
+                  arguments:
+                    to: source('nyc_taxi_data', 'zones')
+                    field: LocationID 
+                    
+          - name: DOLocationID 
+            data_tests:
+              - relationships:
+                  arguments:
+                    to: source('nyc_taxi_data', 'zones')
+                    field: LocationID 
+
+
+      - name: green_taxi
+        description: 'green taxi trips'
+        columns:
+          - name: lpep_pickup_datetime
+            description: 'The date and time when the meter was engaged.'
+            data_tests:
+              - not_null
+          - name: lpep_dropoff_datetime
+            description: 'The date and time when the meter was disengaged.'
+            data_tests:
+              - not_null
+          - name: trip_distance
+            description: 'The elapsed trip distance in miles reported by the taximeter.'
+            data_tests:
+              - not_null
+          - name: PULocationID 
+            data_tests:
+              - relationships:
+                  arguments:
+                    to: source('nyc_taxi_data', 'zones')
+                    field: LocationID 
+          - name: DOLocationID 
+            data_tests:
+              - relationships:
+                  arguments:
+                    to: source('nyc_taxi_data', 'zones')
+                    field: LocationID 
